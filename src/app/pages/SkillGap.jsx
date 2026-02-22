@@ -3,16 +3,23 @@ import { ArrowLeft, MoreHorizontal, CheckCircle, AlertTriangle, FileText, Downlo
 import SkillChip from '../../ui/components/SkillChip';
 import RoadmapCard from '../../ui/components/RoadmapCard';
 
-import rolesDataset from '../../core/logic/rolesDataset';
+import { getAllRoles, findRoles } from '../../core/logic/dataStore';
 import { getResume, getProfile, saveSkillGapResults, getSkillGapResults } from '../../core/db/repo';
 import { analyzeSkillGap } from '../../core/logic/skillEngine';
 
 export default function SkillGap() {
+    const rolesDataset = getAllRoles();
     const [resumeText, setResumeText] = useState('');
     const [targetRole, setTargetRole] = useState(rolesDataset[0]?.roleId || '');
     const [analysis, setAnalysis] = useState(null);
     const [loading, setLoading] = useState(false);
     const [errorStatus, setErrorStatus] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredRoles, setFilteredRoles] = useState(rolesDataset);
+
+    useEffect(() => {
+        setFilteredRoles(findRoles(searchQuery));
+    }, [searchQuery]);
 
     useEffect(() => {
         const loader = async () => {
@@ -119,12 +126,20 @@ export default function SkillGap() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-3">
                     <div className="space-y-1.5">
+                        <label className="text-xs font-semibold uppercase tracking-wider text-gray-400">Role Search</label>
+                        <input
+                            type="text"
+                            placeholder="Search roles..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full rounded-lg bg-[#121a2a] border border-[#3b5445] py-2 px-4 mb-2 text-sm text-white focus:border-[#13ec6d] focus:outline-none focus:ring-1 focus:ring-[#13ec6d]"
+                        />
                         <label className="text-xs font-semibold uppercase tracking-wider text-gray-400">Target Role</label>
                         <select
                             value={targetRole}
                             onChange={(e) => setTargetRole(e.target.value)}
                             className="w-full rounded-lg bg-[#121a2a] border border-[#3b5445] py-3 px-4 text-sm text-white focus:border-[#13ec6d] focus:outline-none focus:ring-1 focus:ring-[#13ec6d]">
-                            {rolesDataset.map(r => (
+                            {filteredRoles.map(r => (
                                 <option key={r.roleId} value={r.roleId}>{r.roleName}</option>
                             ))}
                         </select>

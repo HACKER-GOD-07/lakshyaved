@@ -1,24 +1,42 @@
+import { getAllSkills } from "../logic/dataStore";
+import { normalizeSkillToken } from "./skillNormalizer";
+
 export function normalizeText(text) {
     if (!text) return '';
     return text.toLowerCase().replace(/[^a-z0-9+# \n]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 export function extractSkillsFromText(text, rolesDataset) {
-    if (!text || !rolesDataset) return [];
+    if (!text) return [];
 
-    // Create a set of all possible skills across all roles to match against
+    const allSkills = getAllSkills();
     const allKnownSkills = new Set();
-    rolesDataset.forEach(role => {
-        if (role.requiredSkills) {
-            role.requiredSkills.forEach(s => allKnownSkills.add(s));
+
+    // add from centralized db
+    allSkills.forEach(skill => {
+        if (skill.skillName) {
+            allKnownSkills.add(skill.skillName);
+        }
+        if (skill.aliases) {
+            skill.aliases.forEach(a => allKnownSkills.add(a));
         }
     });
 
-    const normalized = normalizeText(text);
-    const foundSkills = [];
+    // fallback from dataset to not break older rolesDataset
+    if (rolesDataset) {
+        rolesDataset.forEach(role => {
+            if (role.requiredSkills) {
+                role.requiredSkills.forEach(s => allKnownSkills.add(s));
+            }
+        });
+    }
 
-    for (const skill of allKnownSkills) {
-        const normSkill = normalizeText(skill);
+    const normalized = normalizeText(text);
+    const foundCanonicalSkills = new Set();
+
+    for (const originalSkill of allKnownSkills) {
+        const normSkill = normalizeText(originalSkill);
+        if (!normSkill) continue;
 
         let isMatch = false;
         const paddedText = ` ${normalized} `;
@@ -27,9 +45,7 @@ export function extractSkillsFromText(text, rolesDataset) {
         if (paddedText.includes(paddedSkill)) {
             isMatch = true;
         } else {
-            // Also try a raw include for things like "c++"
             if (normalized.includes(normSkill)) {
-                // simple boundary
                 const idx = normalized.indexOf(normSkill);
                 const before = idx > 0 ? normalized[idx - 1] : ' ';
                 const after = idx + normSkill.length < normalized.length ? normalized[idx + normSkill.length] : ' ';
@@ -40,9 +56,10 @@ export function extractSkillsFromText(text, rolesDataset) {
         }
 
         if (isMatch) {
-            foundSkills.push(skill);
+            const canonical = normalizeSkillToken(originalSkill);
+            foundCanonicalSkills.add(canonical);
         }
     }
 
-    return foundSkills;
+    return Array.from(foundCanonicalSkills);
 }

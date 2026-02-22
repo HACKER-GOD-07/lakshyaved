@@ -1,0 +1,174 @@
+[
+    {
+        "skillId": "python",
+        "skillName": "Python",
+        "type": "language",
+        "aliases": [
+            "python3",
+            "py"
+        ]
+    },
+    {
+        "skillId": "javascript",
+        "skillName": "JavaScript",
+        "type": "language",
+        "aliases": [
+            "js",
+            "ecmascript"
+        ]
+    },
+    {
+        "skillId": "react",
+        "skillName": "React",
+        "type": "framework",
+        "aliases": [
+            "reactjs",
+            "react.js"
+        ]
+    },
+    {
+        "skillId": "node-js",
+        "skillName": "Node.js",
+        "type": "framework",
+        "aliases": [
+            "nodejs",
+            "node"
+        ]
+    },
+    {
+        "skillId": "sql",
+        "skillName": "SQL",
+        "type": "database",
+        "aliases": [
+            "mysql",
+            "postgresql",
+            "rdbms"
+        ]
+    },
+    {
+        "skillId": "machine-learning",
+        "skillName": "Machine Learning",
+        "type": "concept",
+        "aliases": [
+            "ml"
+        ]
+    },
+    {
+        "skillId": "agile",
+        "skillName": "Agile",
+        "type": "methodology",
+        "aliases": [
+            "scrum"
+        ]
+    },
+    {
+        "skillId": "roadmapping",
+        "skillName": "Roadmapping",
+        "type": "skill",
+        "aliases": [
+            "product roadmapping"
+        ]
+    },
+    {
+        "skillId": "jira",
+        "skillName": "Jira",
+        "type": "tool",
+        "aliases": [
+            "atlassian jira"
+        ]
+    },
+    {
+        "skillId": "java",
+        "skillName": "Java",
+        "type": "language",
+        "aliases": [
+            "core java",
+            "j2ee"
+        ]
+    },
+    {
+        "skillId": "c++",
+        "skillName": "C++",
+        "type": "language",
+        "aliases": [
+            "cpp",
+            "c plus plus"
+        ]
+    },
+    {
+        "skillId": "c#",
+        "skillName": "C#",
+        "type": "language",
+        "aliases": [
+            "csharp",
+            "c sharp"
+        ]
+    },
+    {
+        "skillId": "aws",
+        "skillName": "AWS",
+        "type": "cloud",
+        "aliases": [
+            "amazon web services"
+        ]
+    },
+    {
+        "skillId": "docker",
+        "skillName": "Docker",
+        "type": "tool",
+        "aliases": [
+            "containerization"
+        ]
+    },
+    {
+        "skillId": "kubernetes",
+        "skillName": "Kubernetes",
+        "type": "tool",
+        "aliases": [
+            "k8s"
+        ]
+    },
+    {
+        "skillId": "git",
+        "skillName": "Git",
+        "type": "tool",
+        "aliases": [
+            "version control",
+            "github",
+            "gitlab"
+        ]
+    },
+    {
+        "skillId": "linux",
+        "skillName": "Linux",
+        "type": "os",
+        "aliases": [
+            "unix",
+            "ubuntu"
+        ]
+    },
+    {
+        "skillId": "html",
+        "skillName": "HTML",
+        "type": "language",
+        "aliases": [
+            "html5"
+        ]
+    },
+    {
+        "skillId": "css",
+        "skillName": "CSS",
+        "type": "language",
+        "aliases": [
+            "css3"
+        ]
+    },
+    {
+        "skillId": "typescript",
+        "skillName": "TypeScript",
+        "type": "language",
+        "aliases": [
+            "ts"
+        ]
+    }
+]

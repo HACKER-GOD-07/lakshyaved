@@ -1,0 +1,64 @@
+[
+    {
+        "roleId": "sw-engineer",
+        "roleName": "Software Engineer",
+        "category": "Engineering",
+        "requiredSkills": [
+            "JavaScript",
+            "React"
+        ],
+        "niceToHaveSkills": [
+            "Node.js"
+        ],
+        "baseSalaryINR": 1000000,
+        "growthRate": 10,
+        "aliases": [
+            "SDE",
+            "Software Dev"
+        ],
+        "tags": [
+            "Tech"
+        ]
+    },
+    {
+        "roleId": "data-scientist",
+        "roleName": "Data Scientist",
+        "category": "Data",
+        "requiredSkills": [
+            "Python",
+            "Machine Learning"
+        ],
+        "niceToHaveSkills": [
+            "SQL"
+        ],
+        "baseSalaryINR": 1200000,
+        "growthRate": 12,
+        "aliases": [
+            "DS",
+            "ML Engineer"
+        ],
+        "tags": [
+            "Data"
+        ]
+    },
+    {
+        "roleId": "product-manager",
+        "roleName": "Product Manager",
+        "category": "Management",
+        "requiredSkills": [
+            "Agile",
+            "Roadmapping"
+        ],
+        "niceToHaveSkills": [
+            "Jira"
+        ],
+        "baseSalaryINR": 1500000,
+        "growthRate": 8,
+        "aliases": [
+            "PM"
+        ],
+        "tags": [
+            "Product"
+        ]
+    }
+]
